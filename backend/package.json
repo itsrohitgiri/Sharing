@@ -3,18 +3,20 @@
   "version": "1.0.0",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node server.js"  // Main script to start your server
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "description": "",
+  "keywords": ["backend", "API", "Express"],
+  "author": "Rohit Giri",
+  "license": "MIT",
+  "description": "An Express backend for storing and retrieving text by generated codes.",
   "dependencies": {
     "body-parser": "^1.20.3",
     "cors": "^2.8.5",
     "express": "^4.21.2",
     "path": "^0.12.7",
     "uuid": "^11.0.3"
+  },
+  "engines": {
+    "node": ">=14"
   }
 }
