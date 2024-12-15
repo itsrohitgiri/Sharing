@@ -7,7 +7,7 @@ const CodeInput = ({ onRetrieveText }) => {
   const [retrievedText, setRetrievedText] = useState(''); // For displaying the retrieved text
 
   // Get the backend URL from the environment variable
-  const BACKEND_URL = process.env.BACKEND_URL;
+  const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 
   const handleCodeChange = (e) => {
     setCode(e.target.value);
