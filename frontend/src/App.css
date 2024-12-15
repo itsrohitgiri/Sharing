@@ -1,0 +1,181 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+/* Global Styles */
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: #0e1117;  /* Darker background for modern look */
+  color: #eaeaea;  /* Light gray font color for better readability */
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Vertically center content */
+  align-items: center; /* Horizontally center content */
+  line-height: 1.6;
+}
+
+/* Full-page Layout */
+.container {
+  max-width: 900px;
+  width: 100%;
+  margin: 20px auto;
+  padding: 20px;
+  border-radius: 12px;
+  background: #1d2128;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  color: #eaeaea;
+  text-align: center; /* Center the text in containers */
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Align children (input, button) horizontally */
+  transition: transform 0.2s ease-in-out;
+  justify-content: center;
+}
+
+.container:hover {
+  transform: scale(1.03);  /* Slight hover effect for modern feel */
+}
+
+/* Header Styles */
+h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #00fff7;  /* Neon blue for headers */
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 20px;
+  font-family: 'Arial', sans-serif;
+  animation: slideIn 1.5s ease-out;
+}
+
+/* Error Message Styling */
+p {
+  font-size: 1.1rem;
+  color: #ff0040; /* Red for important messages like errors */
+  margin-top: 20px;
+  font-weight: bold;
+}
+
+/* Scrollable Container */
+.retrieved-text {
+  white-space: pre-wrap;  /* Preserve newlines and spaces */
+  word-wrap: break-word;
+  background-color: #121417;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #444;
+  color: #f7f7f7;
+  font-family: 'Courier New', monospace;
+  margin-top: 15px;
+  max-height: 300px;
+  overflow-y: auto;  /* Allows scrolling if text is too long */
+  box-shadow: 0 4px 8px rgba(0, 255, 255, 0.1);
+  line-height: 1.5;
+}
+
+/* Input Styles */
+input {
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  background-color: #2d2f38;
+  color: #ffffff;
+  font-size: 1.1rem;
+  width: 100%;
+  max-width: 500px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease;
+}
+
+input:focus {
+  outline: none;
+  border: 2px solid #00f7ff; /* Neon blue border on focus */
+  box-shadow: 0 0 8px rgba(0, 255, 255, 0.3);
+  background-color: #22272e; /* Slightly different background color when focused */
+}
+
+input::-webkit-resizer {
+  display: block;
+  background-color: transparent;
+  width: 10px;
+  height: 10px;
+}
+
+/* Button Styles */
+button {
+  padding: 12px 20px;
+  background-color: #00f7ff;
+  border: none;
+  border-radius: 8px;
+  color: #121212;
+  font-size: 1.2rem;
+  cursor: pointer;
+  margin-top: 15px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  max-width: 200px;
+  display: block;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #00b5cc;  /* Darker shade of neon blue */
+  transform: translateY(-2px);
+}
+
+/* Navbar Styling */
+nav {
+  background-color: #1e242e;
+  padding: 15px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  z-index: 999;
+}
+
+nav a {
+  text-decoration: none;
+  color: #eaeaea;
+  font-size: 1.1rem;
+  padding: 10px 20px;
+  border-radius: 8px;
+  transition: background-color 0.3s;
+}
+
+nav a:hover {
+  background-color: #00f7ff;
+  color: #121212;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .container {
+    padding: 15px;
+    width: 100%;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+  }
+
+  input,
+  button {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+}
