@@ -5,6 +5,9 @@ const TextInput = ({ onGenerateCode }) => {
   const [text, setText] = useState('');
   const [error, setError] = useState('');
 
+  // Get the backend URL from the environment variable
+  const BACKEND_URL = process.env.BACKEND_URL;
+
   const handleTextChange = (e) => {
     setText(e.target.value);
   };
@@ -17,13 +20,15 @@ const TextInput = ({ onGenerateCode }) => {
 
     try {
       // Use axios to send a POST request to store the text
-      const response = await axios.post('http://localhost:5000/store', {
-        text,
-      }, {
-        headers: {
-          'Content-Type': 'application/json',  // Ensure the content type is JSON
-        },
-      });
+      const response = await axios.post(
+        `${BACKEND_URL}/store`, // Use the backend URL from the .env file
+        { text },
+        {
+          headers: {
+            'Content-Type': 'application/json', // Ensure the content type is JSON
+          },
+        }
+      );
 
       // If the request is successful, handle the response and pass the code to the parent component
       onGenerateCode(response.data.code);
@@ -36,7 +41,11 @@ const TextInput = ({ onGenerateCode }) => {
 
   return (
     <div>
-      <textarea value={text} placeholder='enter text' onChange={handleTextChange}></textarea>
+      <textarea
+        value={text}
+        placeholder="Enter text"
+        onChange={handleTextChange}
+      ></textarea>
       <button onClick={handleSubmit}>Generate Code</button>
       {error && <p style={{ color: 'red' }}>{error}</p>}
     </div>
