@@ -1,15 +1,19 @@
 const express = require('express');
-const cors = require('cors'); // Import cors package
+const cors = require('cors');
 const path = require('path');
 const uuid = require('uuid').v4;
-const app = express();
-const PORT = 5000;
 
-let storage = {};
+const app = express();
+const PORT = process.env.PORT || 5000;
+
+let storage = {}; // Temporary storage; use a database for production
 
 // Middleware
 app.use(express.json());
-app.use(cors()); // Add this line to allow CORS
+app.use(cors({
+  origin: process.env.FRONTEND_URL || '*', // Restrict to Vercel frontend URL
+  methods: ['GET', 'POST'],
+}));
 
 // Endpoint to store text and generate code
 app.post('/store', (req, res) => {
@@ -46,4 +50,4 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 // Start the server
-app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
