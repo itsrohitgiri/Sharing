@@ -1,6 +1,5 @@
 const express = require('express');
 const cors = require('cors');
-const path = require('path');
 const uuid = require('uuid').v4;
 
 const app = express();
@@ -11,7 +10,7 @@ let storage = {}; // Temporary storage; use a database for production
 // Middleware
 app.use(express.json());
 app.use(cors({
-  origin: process.env.FRONTEND_URL || '*', // Restrict to Vercel frontend URL
+  origin: process.env.FRONTEND_URL || '*', // Restrict CORS to frontend URL (you can replace '*' with your frontend's URL on Vercel)
   methods: ['GET', 'POST'],
 }));
 
@@ -38,16 +37,6 @@ app.get('/retrieve/:code', (req, res) => {
     res.status(404).json({ message: 'Code not found' });
   }
 });
-
-// Serve the React frontend
-if (process.env.NODE_ENV === 'production') {
-  app.use(express.static(path.join(__dirname, 'client/build')));
-
-  // For any route, serve the React app
-  app.get('*', (req, res) => {
-    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
-  });
-}
 
 // Start the server
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
