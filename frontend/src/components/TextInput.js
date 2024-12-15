@@ -6,7 +6,7 @@ const TextInput = ({ onGenerateCode }) => {
   const [error, setError] = useState('');
 
   // Get the backend URL from the environment variable
-  const BACKEND_URL = process.env.BACKEND_URL;
+  const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 
   const handleTextChange = (e) => {
     setText(e.target.value);
