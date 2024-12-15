@@ -4,7 +4,10 @@ import axios from 'axios';
 const CodeInput = ({ onRetrieveText }) => {
   const [code, setCode] = useState('');
   const [error, setError] = useState('');
-  const [retrievedText, setRetrievedText] = useState('');  // For displaying the retrieved text
+  const [retrievedText, setRetrievedText] = useState(''); // For displaying the retrieved text
+
+  // Get the backend URL from the environment variable
+  const BACKEND_URL = process.env.BACKEND_URL;
 
   const handleCodeChange = (e) => {
     setCode(e.target.value);
@@ -18,13 +21,13 @@ const CodeInput = ({ onRetrieveText }) => {
 
     try {
       // Use axios to fetch data from the backend
-      const response = await axios.get(`http://localhost:5000/retrieve/${code}`);
+      const response = await axios.get(`${BACKEND_URL}/retrieve/${code}`);
 
       // Store the retrieved text
       const text = response.data.text || 'No text found';
-      setRetrievedText(text);  // Save the retrieved text
-      onRetrieveText(text);     // Pass the retrieved text to parent component
-      setError('');             // Clear any errors
+      setRetrievedText(text); // Save the retrieved text
+      onRetrieveText(text); // Pass the retrieved text to parent component
+      setError(''); // Clear any errors
     } catch (error) {
       console.error('Error:', error);
       setError('Error retrieving text. Code may not exist.');
@@ -50,8 +53,8 @@ const CodeInput = ({ onRetrieveText }) => {
         <div
           className="retrieved-text"
           style={{
-            whiteSpace: 'pre-wrap',   // Preserve whitespace and newlines
-            wordBreak: 'break-word',  // Break long words appropriately
+            whiteSpace: 'pre-wrap', // Preserve whitespace and newlines
+            wordBreak: 'break-word', // Break long words appropriately
             backgroundColor: '#f5f5f5', // Light background for readability
             padding: '10px',
             border: '1px solid #ddd',
@@ -60,8 +63,8 @@ const CodeInput = ({ onRetrieveText }) => {
             fontFamily: 'Courier, monospace', // Monospace font for code-like display
             color: 'black',
             textAlign: 'left', // Ensure text is aligned to the left (not centered)
-            overflowX: 'auto',  // Ensure horizontal scrolling if needed
-          }}          
+            overflowX: 'auto', // Ensure horizontal scrolling if needed
+          }}
         >
           {retrievedText}
         </div>
