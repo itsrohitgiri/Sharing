@@ -14,18 +14,29 @@ app.use(cors({
   methods: ['GET', 'POST'],
 }));
 
-// Endpoint to store text and generate code
+// Endpoint to store text and generate code with expiration
 app.post('/store', (req, res) => {
   const code = uuid().slice(0, 6).toLowerCase();
-  const { text } = req.body;
+  const { text, duration } = req.body;
 
   if (!text) {
     return res.status(400).json({ message: 'Text is required' });
   }
 
+  if (![1, 2, 5, 10].includes(duration)) {
+    return res.status(400).json({ message: 'Invalid duration. Allowed: 1, 2, 5, or 10 minutes.' });
+  }
+
   // Store the text with the generated code
-  storage[code] = text;
-  res.json({ code });
+  storage[code] = { text };
+
+  // Set a timeout to delete the code after 'duration' minutes
+  setTimeout(() => {
+    delete storage[code];
+    console.log(`Code ${code} has expired and been removed.`);
+  }, duration * 60 * 1000); // Convert minutes to milliseconds
+
+  res.json({ code, expiresIn: `${duration} minutes` });
 });
 
 // Endpoint to retrieve text by code
