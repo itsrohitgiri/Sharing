@@ -30,7 +30,12 @@ const CodeInput = ({ onRetrieveText }) => {
       setError(''); // Clear any errors
     } catch (error) {
       console.error('Error:', error);
-      setError('Error retrieving text. Code may not exist.');
+      if (error.response && error.response.status === 404) {
+        setError('Error retrieving text. Code may not exist or may have expired.');
+      } else {
+        setError('There was an issue retrieving the text.');
+      }
+      setRetrievedText('');    // Clear any previously displayed text
     }
   };
 
