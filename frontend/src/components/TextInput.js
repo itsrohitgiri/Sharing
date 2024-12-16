@@ -32,7 +32,9 @@ const TextInput = ({ onGenerateCode }) => {
       // Use axios to send a POST request to store the text
       const response = await axios.post(
         `${BACKEND_URL}/store`, // Use the backend URL from the .env file
-        { text },
+        { text,
+         duration,
+        },
         {
           headers: {
             'Content-Type': 'application/json', // Ensure the content type is JSON
