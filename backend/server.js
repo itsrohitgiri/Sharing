@@ -43,7 +43,7 @@ app.post('/store', (req, res) => {
 app.get('/retrieve/:code', (req, res) => {
   const code = req.params.code.toLowerCase();
   if (storage[code]) {
-    res.json({ text: storage[code] });
+    res.json({ text: storage[code].text });
   } else {
     res.status(404).json({ message: 'Code not found' });
   }
